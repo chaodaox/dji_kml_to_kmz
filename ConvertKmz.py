@@ -110,7 +110,7 @@ class ConvertKmz:
             coordinateMode = ET.SubElement(waylineCoordinateSysParam, "wpml:coordinateMode")
             coordinateMode.text = "WGS84"  # 经纬度坐标系
             heightMode = ET.SubElement(waylineCoordinateSysParam, "wpml:heightMode")
-            heightMode.text = "WGS84"  # 航点高程参考平面
+            heightMode.text = "EGM96"  # 航点高程参考平面
             positioningType = ET.SubElement(waylineCoordinateSysParam, "wpml:positioningType")
             positioningType.text = "GPS"  # 经纬度与高度数据源
         else:
@@ -157,8 +157,6 @@ class ConvertKmz:
             index = ET.SubElement(Placemark, "wpml:index")
             index.text = str(_index)  # 航点序号
             _index += 1
-            # print((float(coordinates_arr[1]), float(coordinates_arr[0])))
-            # print(coordinates_arr[2], self.vicentyFormula([0, 0], [float(coordinates_arr[1]), float(coordinates_arr[0])]), self.distance((0, 0), (float(coordinates_arr[1]), float(coordinates_arr[0]))))
             if is_template:
                 ellipsoidHeight = ET.SubElement(Placemark, "wpml:ellipsoidHeight")
                 ellipsoidHeight.text = coordinates_arr[2]  # 全局航线高度（椭球高）
